@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backStreet"
+    android:background="@drawable/backstreet"
     android:backgroundTint="#30CCE1"
     android:backgroundTintMode="multiply"
     tools:context=".pinCode">
@@ -57,7 +57,7 @@
             android:layout_height="25dp"
             android:layout_gravity="center|start"
             android:background="@drawable/nofill_ring"
-            android:foreground="@drawable/nofill_ring"/>
+            android:foreground="@drawable/nofill_ring" />
 
         <EditText
             android:id="@+id/imageView5"
