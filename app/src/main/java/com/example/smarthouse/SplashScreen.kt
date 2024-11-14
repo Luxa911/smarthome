@@ -12,9 +12,18 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         val splashView : ImageView = findViewById(R.id.splashview)
+        val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+        val savedPinCode = sharedPreferences.getString("savedPinCode", null)
         splashView.animate().rotation(360f).setDuration(3000).start()
+
+        val nextActivity = if(savedPinCode !=null){
+            pinCodeready::class.java
+        } else {
+            Login::class.java
+        }
+
         android.os.Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, pinCode::class.java)
+            val intent = Intent(this, nextActivity)
        startActivity(intent)
             finish()
         },5000)
