@@ -38,11 +38,5 @@ class registration : AppCompatActivity() {
         ) {
             install(Postgrest)
         }
-        CoroutineScope(Dispatchers.IO).launch {
-        val user = supabase.auth.signUpWith(Email){
-            email = "example@email.com"
-            password = "example"
-        }
-        }
     }
 }
