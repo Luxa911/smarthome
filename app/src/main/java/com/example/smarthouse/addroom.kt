@@ -2,21 +2,18 @@ package com.example.smarthouse
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
-<<<<<<< HEAD
-import io.github.jan.supabase.storage.storage
-=======
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
-
->>>>>>> bd831a1 (day)
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -32,26 +29,10 @@ val supabase = createSupabaseClient(
 ){
 install(Postgrest)
 }
-<<<<<<< HEAD
-        suspend fun getPublicImageUrl(path:String) : String? {
-            val storage = supabase.storage.from("RoomsImage")
-        }
-
-        roomTypesRecView.layoutManager = GridLayoutManager(this,3 )
-        val roomTypesAdapter = RoomTypesAdapter {
-            selectedRoomType ->
-
-        }
-
-
-
-
-
-=======
-        CoroutineScope(Dispatchers.IO).launch{
-            val response = supabase.from("types_room").select(columns = Columns.list("typename, icon")).decodeList<RoomType>()
+        MainScope().launch{
+            val response = supabase.from("types_room").select().decodeList<RoomType>()
             roomTypesRecView.adapter = RoomTypesAdapter(response ?: emptyList())
+            roomTypesRecView.layoutManager = GridLayoutManager(this@addroom, 3)
         }
->>>>>>> bd831a1 (day)
     }
 }
