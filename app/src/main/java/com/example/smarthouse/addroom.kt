@@ -8,9 +8,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
+<<<<<<< HEAD
+import io.github.jan.supabase.storage.storage
+=======
 import io.github.jan.supabase.postgrest.from
 import io.github.jan.supabase.postgrest.query.Columns
 
+>>>>>>> bd831a1 (day)
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,9 +32,26 @@ val supabase = createSupabaseClient(
 ){
 install(Postgrest)
 }
+<<<<<<< HEAD
+        suspend fun getPublicImageUrl(path:String) : String? {
+            val storage = supabase.storage.from("RoomsImage")
+        }
+
+        roomTypesRecView.layoutManager = GridLayoutManager(this,3 )
+        val roomTypesAdapter = RoomTypesAdapter {
+            selectedRoomType ->
+
+        }
+
+
+
+
+
+=======
         CoroutineScope(Dispatchers.IO).launch{
             val response = supabase.from("types_room").select(columns = Columns.list("typename, icon")).decodeList<RoomType>()
             roomTypesRecView.adapter = RoomTypesAdapter(response ?: emptyList())
         }
+>>>>>>> bd831a1 (day)
     }
 }
